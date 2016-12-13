@@ -29,10 +29,11 @@ public class TilesGUI extends JFrame {
 
     private JButton tiles[];
     private Board gameBoard;
-    boolean settingBoardMode; //flag for setting the board
-    int numberOfTilesSet; //counter for setting the board
-    ArrayList<Integer> setOfPlacedTiles; //tiles that have already been set
-    Node autoSolveResult; //either the solution board or a closet board
+    private boolean settingBoardMode; //flag for setting the board
+    private int numberOfTilesSet; //counter for setting the board
+    private ArrayList<Integer> setOfPlacedTiles; //tiles that have already been set
+    private Node autoSolveResult; //either the solution board or a closet board
+    private boolean gameSolved; //flag for whether the game is solved or not
 
     //constructor
     public TilesGUI()
@@ -44,6 +45,7 @@ public class TilesGUI extends JFrame {
         numberOfTilesSet = 0;
         setOfPlacedTiles =new ArrayList<>();
         settingBoardMode = false;
+        gameSolved = false;
 
         //set the design GUI
         Container pane = getContentPane();
@@ -184,7 +186,9 @@ public class TilesGUI extends JFrame {
                 numberOfTilesSet++;
 
                 //done setting the board, converting the tiles to a new BOARD
-                if (numberOfTilesSet == 9) {
+                if (numberOfTilesSet == 9) 
+                {
+                    gameSolved = false;
                     settingBoardMode = false;
                     ArrayList<Integer> newBoard = new ArrayList<>();
                     for (int i = 0; i < GameConstants.BOARD_SIZE; i++) {
@@ -198,8 +202,11 @@ public class TilesGUI extends JFrame {
                 }
             }
             //completion message
-            if (gameBoard.getHeuristicValue() == 0)
+            if (gameSolved == false && gameBoard.getHeuristicValue() == 0)
+            {
+                gameSovled == true;
                 JOptionPane.showMessageDialog(null, "Congratulations, the puzzle is solved!");
+            }
 
         }
     }
