@@ -22,7 +22,9 @@ until the board is numerically ordered as such:
 
 _____________
 | 1 | 2 | 3 |
+_____________
 | 4 | 5 | 6 |
+_____________
 | 7 | 8 |   |
 _____________
 
